@@ -1,12 +1,10 @@
-import { createStroe } from 'vuex'
+import { createStore } from 'vuex'
 import movie from './movie'
 import about from './about'
 
-export default createStroe({
+export default createStore({
   modules: {
-    // movie: movie,
-    movie,
-    // about: about
-    about
+    movie: movie,
+    about: about
   }
 })
