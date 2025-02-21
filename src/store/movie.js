@@ -4,7 +4,9 @@ import _uniqBy from 'lodash/uniqBy'
 export default {
   namespaced: true,
   state: () => ({
-    movies: []
+    movies: [],
+    message: 'Search for the movie title!',
+    loading: false,
   }),
   getters: {
     movieIds(state) {
@@ -23,6 +25,14 @@ export default {
   },
   actions: {
     async searchMovies({ state, commit }, payload) {
+      // 중복 실행 방지
+      if (state.loading) {
+        return
+      }
+      commit('updateState', {
+        message: '',
+        loading: true,
+      })
       try {
         const res = await _fetchMovie({
           ...payload,
@@ -63,6 +73,10 @@ export default {
         commit('updateState', {
           movies: [],
           message: message
+        })
+      } finally {
+        commit('updateState', {
+          loading: false
         })
       }
     }
