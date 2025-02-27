@@ -44,10 +44,6 @@ export default {
           movies: _uniqBy(Search, 'imdbID'),
         })
 
-        console.log(Search)
-        console.log(totalResults)
-        console.log(typeof totalResults)
-
         const total = parseInt(totalResults, 10)
         const pageLength = Math.ceil(total / 10)
 
