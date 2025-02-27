@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div :class="{ 'no-result': !movies.length }" class="inner">
-      <Loader v-if="loadng" />
+      <Loader v-if="loading" />
       <div v-if="message" class="message">
         {{ message }}
       </div>
@@ -13,9 +13,9 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import MovieItem from '~/components/MovieItem'
 import Loader from '~/components/Loader'
-import { mapState } from 'vuex'
 
 export default {
   components: {
